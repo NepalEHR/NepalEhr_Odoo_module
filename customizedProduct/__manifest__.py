@@ -3,7 +3,8 @@
 {
 'name':'Product Customized',
 'description':'Added some information about product',
-'author':'sudishrestha',
+'author':'Possible Health',
+'website': 'https://www.nepalehr.org/',
 'application': True,
    
 
