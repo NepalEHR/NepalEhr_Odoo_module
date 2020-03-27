@@ -3,7 +3,7 @@
         <menuitem id='menu_reporting' name='Reporting'  sequence="70"/>
         <menuitem name="Sales" parent="menu_reporting" id="menu_reporting_sales" sequence="50"  />
         <menuitem name="Purchase" parent="menu_reporting" id="menu_reporting_purchase" sequence="51"/>
-        <menuitem name="Insurance" parent="menu_reporting" id="menu_reporting_insurance" sequence="52"/>
+       
 
 
 
@@ -16,14 +16,6 @@
         parent="menu_reporting_sales"
         sequence="10"  action="sale.action_order_report_all"/>
 
-             <menuitem  name="Claim Report"  id="menu_reporting_claim_report" action="bahmni_insurance_odoo.action_claim_report"
-        parent="menu_reporting_insurance" sequence="10"/>
-
-            <menuitem  name="Claim Report By Patients" id="menu_reporting_patient_report" action="bahmni_insurance_odoo.action_claim_patient_report"
-        parent="menu_reporting_insurance" sequence="11"/>
-
-            <menuitem  name="Insurance Claim summary" id="menu_reporting_claim_summary" action="bahmni_insurance_odoo.action_report_insurance_claim_summary"
-        parent="menu_reporting_insurance" sequence="12"/>
         
 
 </odoo> 

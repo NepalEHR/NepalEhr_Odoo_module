@@ -12,7 +12,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-   'depends':  ['base','sale','bahmni_insurance_odoo', "mail", "bahmni_atom_feed", "bahmni_account", "account","purchase"],
+   'depends':  ['base','sale', "mail", "bahmni_atom_feed", "bahmni_account", "account","purchase"],
 
     # always loaded
     'data': [
