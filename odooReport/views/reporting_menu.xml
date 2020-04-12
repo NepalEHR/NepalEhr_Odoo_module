@@ -3,19 +3,51 @@
         <menuitem id='menu_reporting' name='Reporting'  sequence="70"/>
         <menuitem name="Sales" parent="menu_reporting" id="menu_reporting_sales" sequence="50"  />
         <menuitem name="Purchase" parent="menu_reporting" id="menu_reporting_purchase" sequence="51"/>
+        <menuitem name="Accounting" parent="menu_reporting" id="menu_reporting_account" sequence="52"/>
+        <!-- <menuitem name="Insurance" parent="menu_reporting" id="menu_reporting_insurance" sequence="53"/> -->
+        <menuitem name="Configuration" parent="menu_reporting" id="menu_reporting_config" sequence="60"/>
        
 
 
+      <!-- <menuitem  name="Claim Report"  id="menu_reporting_claim_report" action="bahmni_insurance_odoo.action_claim_report"
+        parent="menu_reporting_insurance" sequence="10"/>
 
-         <menuitem id="menu_reporting_purchase_report" name="Purchase Analysis" 
-        parent="menu_reporting_purchase"
-        sequence="10"  action="purchase.action_purchase_order_report_all"/>
+            <menuitem  name="Claim Report By Patients" id="menu_reporting_patient_report" action="bahmni_insurance_odoo.action_claim_patient_report"
+        parent="menu_reporting_insurance" sequence="11"/>
 
+            <menuitem  name="Insurance Claim summary" id="menu_reporting_claim_summary" action="bahmni_insurance_odoo.action_report_insurance_claim_summary"
+        parent="menu_reporting_insurance" sequence="12"/> -->
+
+
+         <menuitem id="menu_reporting_purchase_report" name="Purchase Analysis" parent="menu_reporting_purchase" sequence="10"  action="purchase.action_purchase_order_report_all"/>
+
+         <menuitem id="menu_reporting_sales_report" name="Sales Analysis" parent="menu_reporting_sales" sequence="10"  action="sale.action_order_report_all"/>
+
+
+
+
+
+    <menuitem action="bahmni_account.action_search_account_reports" id="menu_action_search_account_reports" parent="menu_reporting_account"  sequence="20"/>
+	
+    <menuitem id="menu_reporting_account_BI" name="Business Intelligence" parent="menu_reporting_account" sequence="21"/>
+       <menuitem name="Invoices" action="account.action_account_invoice_report_all"  id="menu_action_account_invoice_report_all" parent="menu_reporting_account_BI"   sequence="56"/>
+    
+    
+    <menuitem id="menu_reporting_account_pdf" name="PDF Reports" parent="menu_reporting_account" sequence="22"/>
+        <menuitem  id="menu_print_journal" name="Sale/Purchase Journal" parent="menu_reporting_account_pdf" action="account.action_account_print_journal_menu" sequence="70"/>
+        <menuitem id="menu_partner_ledger" name="Partner Ledger"  parent="menu_reporting_account_pdf"  action="account.action_account_partner_ledger_menu" sequence="71"/>
+        <menuitem id="menu_general_ledger" name="General Ledger" parent="menu_reporting_account_pdf" action="account.action_account_general_ledger_menu" sequence="72"/>
+        <menuitem id="menu_general_Balance_report" name="Trial Balance" parent="menu_reporting_account_pdf" action="account.action_account_balance_menu"   sequence="73"/>
+        <menuitem id="menu_account_report_bs" name="Balance Sheet" action="account.action_account_report_bs" parent="menu_reporting_account_pdf" sequence="74"/> 
+        <menuitem id="menu_account_report_pl" name="Profit and Loss"  action="account.action_account_report_pl" parent="menu_reporting_account_pdf" sequence="75"/>
+        <menuitem id="menu_aged_trial_balance" name="Aged Partner Balance"  action="account.action_account_aged_balance_view"  parent="menu_reporting_account_pdf"  sequence="76"/>
+        <menuitem id="menu_account_report"  name="Financial Report"    action="account.action_account_report" parent="menu_reporting_account_pdf" sequence="77"/>
         
-         <menuitem id="menu_reporting_sales_report" name="Sales Analysis" 
-        parent="menu_reporting_sales"
-        sequence="10"  action="sale.action_order_report_all"/>
+      <menuitem id="menu_account_financial_reports_tree"  name="Account Reports" parent="menu_reporting_config" action="account.action_account_financial_report_tree"  sequence="35"/>
+      <menuitem id="menu_account_report_tree_hierarchy" name="Account Reports Hierarchy" parent="menu_reporting_config" action="account.action_account_report_tree_hierarchy"  sequence="36"/>
 
-        
+      <menuitem  name="Accounts Count Report" action="bahmni_account.action_search_account_count_reports" id="menu_action_search_account_count_reports"  parent="menu_reporting_account" sequence="23" />
+
+
 
 </odoo> 
