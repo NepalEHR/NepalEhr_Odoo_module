@@ -6,12 +6,17 @@
 
 
 <!-- sub menus  -->
+   <!--My Dashboard Menu-->
+   <menuitem  id="menu_board_my_dash_report" parent="menu_reporting" action="board.open_board_my_dash_action" sequence="49"/>
    <menuitem name="Sales" parent="menu_reporting" id="menu_reporting_sales" sequence="50" />
    <menuitem name="Purchase" parent="menu_reporting" id="menu_reporting_purchase" sequence="51" />
    <menuitem name="Accounting" parent="menu_reporting" id="menu_reporting_account" sequence="52" />
    <menuitem name="WareHouse" parent="menu_reporting" id="menu_reporting_warehouse" sequence="53" />
-   <!-- <menuitem name="Insurance" parent="menu_reporting" id="menu_reporting_insurance" sequence="54" /> -->
+   <menuitem name="Insurance" parent="menu_reporting" id="menu_reporting_insurance" sequence="54" />
    <menuitem name="Configurations" parent="menu_reporting" id="menu_reporting_config" sequence="60" />
+
+   <!-- hide menu  -->
+   <delete model="ir.ui.menu" id="board.menu_board_my_dash"></delete>
 
 
 <!-- sales -->
