@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+
+
+<data>
+
+
+<record id="view_product_form_inherit" model="ir.ui.view">
+            <field name="name">product.template.common.form.inherit</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_form_view"/>
+            <field name="arch" type="xml">
+    
+ <xpath expr="//notebook" position="before">
+ <group>
+               	<group name="group_left">
+                    <field name="orphan_drug"  />
+                    <field name="org" />
+                    <field name="bh"  />
+                    <field name="x_low_cost_eq" />
+                    <field name="x_govt"  />
+                    <field name="x_formulary"  />
+                    <field name="medicine_item"  />
+                    <field name="lab_item"  />
+                      </group>
+              	<group name="group_right">
+
+                    <field name="physic_medicine" />
+                    <field name="insurance_medicine"  />
+                    <field name="ch" />
+                    <field name="vertical_program"  />
+                    <field name="dental_item" />
+                    <field name="medical_item"  />
+                    <field name="antibiotic" />
+                    <field name="other_item"  />
+                  </group>
+                </group>
+            </xpath>
+            </field>
+        </record>
+
+       <record id="product_template_search_view_custom" model="ir.ui.view">
+	<field name="name">Product template custom search</field>
+	<field name="model">product.template</field>
+    <field name="inherit_id" ref="product.product_template_search_view"/>
+	<field name="arch" type="xml">
+	<search>
+	   <filter string="Is orphan drug" name="filter_to_donate" domain="[('orphan_drug','=',1)]"/>
+	   <filter string="Organisational" name="filter_to_donate" domain="[('org','=',1)]"/>
+	   <filter string="BH" name="filter_to_donate" domain="[('bh','=',1)]"/>
+	   <filter string="CH" name="filter_to_donate" domain="[('x_low_cost_eq','=',1)]"/>
+	   <filter string="Supplied by Governmnet" name="filter_to_donate" domain="[('x_govt','=',1)]"/>
+	   <filter string="Is formulary" name="filter_to_donate" domain="[('x_formulary','=',1)]"/>
+	   <filter string="Is medicine item" name="filter_to_donate" domain="[('medicine_item','=',1)]"/>
+	   <filter string="Is lab Item" name="filter_to_donate" domain="[('lab_item','=',1)]"/>
+	   <filter string="Is physic medicine" name="filter_to_donate" domain="[('physic_medicine','=',1)]"/>
+	   <filter string="Is insurance medicine" name="filter_to_donate" domain="[('insurance_medicine','=',1)]"/>
+	   <filter string="CH" name="filter_to_donate" domain="[('ch','=',1)]"/>
+	   <filter string="Is vertical Program" name="filter_to_donate" domain="[('vertical_program','=',1)]"/>
+	   <filter string="Is dental Item" name="filter_to_donate" domain="[('dental_item','=',1)]"/>
+	   <filter string="Is medical item" name="filter_to_donate" domain="[('medical_item','=',1)]"/>
+	   <filter string="Is antibiotic" name="filter_to_donate" domain="[('antibiotic','=',1)]"/>
+	   <filter string="Others" name="filter_to_donate" domain="[('other_item','=',1)]"/>
+	 </search>
+	</field>
+</record>
+
+</data>
+
+</odoo>
+
