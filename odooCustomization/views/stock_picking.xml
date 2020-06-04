@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+<data>
+<record id="view_stock_keeping_form_inherit" model="ir.ui.view">
+            <field name="name">stock.view_picking_form.inherit</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+ <xpath expr="//notebook" position="after">
+ <group>
+               	<group name="group_left">
+                   
+                      </group>
+              	<group name="group_right">
+
+                    <field name="x_amount_total" />
+                   
+                  </group>
+                </group>
+            </xpath>
+
+          
+            </field>
+        </record>
+
+
+   
+</data>
+
+</odoo>
+

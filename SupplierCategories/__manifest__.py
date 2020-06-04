@@ -1,8 +1,8 @@
 
 # -*- coding: utf-8 -*-
 {
-'name':'Product Customized',
-'description':'Added some information about product',
+'name':'Product Categories',
+'description':'Add categories to suppliers',
 'author':'Possible Health',
 'website': 'https://www.nepalehr.org/',
 'application': True,
@@ -12,13 +12,13 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base','product'],
+    'depends': ['base','product','purchase','sale',],
 
     # always loaded
     'data': [
        
-        'views/productpdc.xml',
-       
+        'views/supplierClassificationView.xml',
+        'views/partnerCusotmization.xml'
    
     ],
 }

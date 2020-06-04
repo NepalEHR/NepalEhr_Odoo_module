@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+<data>
+
+<record id="res_partner_snp_form_inherit" model="ir.ui.view">
+            <field name="name">res.partner.snp.form.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+
+
+            
+ <group name="purchase" position="inside">
+ <field name="is_supplier"/>
+ <field name="supplier_category" attrs="{'invisible':[('is_supplier', '!=', True)]}"/>
+ </group>
+            </field>
+        </record>
+</data>
+
+</odoo>
