@@ -4,6 +4,7 @@ from datetime import datetime, timedelta
 from odoo.exceptions import ValidationError
 class ProductCustomizeTask(models.Model):
 	_inherit = 'product.template'
+	nehr_id=fields.Char(String="NEHR ID", required=True)
 	orphan_drug = fields.Boolean('Orphan Drug')
 	org = fields.Boolean('Org')
 	bh = fields.Boolean('BH')

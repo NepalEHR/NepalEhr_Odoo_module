@@ -1,24 +1,26 @@
 
 # -*- coding: utf-8 -*-
 {
-'name':'Product Categories',
-'description':'Add categories to suppliers',
+'name':'Product Stock Type',
+'description': 'Add Product Stock Type',
 'author':'Possible Health',
 'website': 'https://www.nepalehr.org/',
-'application': True,
+
+    'installable': True,
+    'auto_install': False,
+    'application': False,
    
 
     'category': 'Product',
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base','product','purchase','sale',],
+    'depends': ['product', 'stock'],
 
     # always loaded
     'data': [
        
-        'views/supplierClassificationView.xml',
-        'views/partnerCusotmization.xml'
+       'views/product_view.xml'
    
     ],
 }

@@ -1,2 +1,0 @@
-import supplierClassifications
-import partnerCustomization

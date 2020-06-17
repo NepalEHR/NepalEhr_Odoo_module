@@ -1,24 +1,36 @@
 
 # -*- coding: utf-8 -*-
 {
-'name':'Odoo Customization',
-'description':'Customization as per Nepal Electronic Health Record',
-'author':'Possible Health',
-'website': 'https://www.nepalehr.org/',
-'application': True,
-   
-
+    'name':'Nyaya Customization',
+    'description':'Customization as per Nepal Electronic Health Record',
+    'author':'Possible Health',
+    'website': 'https://www.nepalehr.org/',
+    'application': True,
     'category': '',
     'version': '0.1',
-
-    # any module necessary for this one to work correctly
-    'depends': ['base','stock'],
-
-    # always loaded
+    'depends': [
+        'base',
+        'stock',
+        'product',
+        'purchase',
+        'sale',
+        'board', 
+        "mail", 
+        "procurement",
+        "bahmni_atom_feed",
+        "bahmni_stock" ,
+        "bahmni_account",
+        "account",
+        "stock_account"
+    ],
     'data': [
-       
-       'views/stock_picking.xml',
-       'report/delivery_slip.xml',
-        'views/stock_transfer.xml'
+        'views/stock_picking.xml',
+        'report/delivery_slip.xml',
+        'views/stock_transfer.xml',
+        'views/product_categories.xml',
+        'views/supplierClassificationView.xml',
+        'views/partnerCusotmization.xml',
+        'views/reporting_menu.xml',
+        'views/report_extended.xml'
     ],
 }

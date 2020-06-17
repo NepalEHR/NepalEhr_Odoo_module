@@ -1,1 +1,4 @@
 import stock_picking
+import product_categories
+import supplierClassifications
+import partnerCustomization
