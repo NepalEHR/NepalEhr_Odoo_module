@@ -21,7 +21,8 @@
         "bahmni_stock" ,
         "bahmni_account",
         "account",
-        "stock_account"
+        "stock_account",
+        "maintenance"
     ],
     'data': [
         'views/stock_picking.xml',
@@ -31,6 +32,7 @@
         'views/supplierClassificationView.xml',
         'views/partnerCusotmization.xml',
         'views/reporting_menu.xml',
-        'views/report_extended.xml'
+        'views/report_extended.xml',
+        'views/maintainance_view.xml'
     ],
 }
