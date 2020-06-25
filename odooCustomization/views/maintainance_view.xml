@@ -12,7 +12,7 @@
                      <field name="asset_number"/>
                 </xpath>
                 <xpath expr="//field[@name='category_id']" position="before">
-                     <field name="property_stock_asset"/>
+                     <!-- <field name="property_stock_asset"/> -->
                      <field name="criticality"/>
                 </xpath>
                 
@@ -20,12 +20,16 @@
                      <field name="warranty" String="Warranty Start"/>
                      <field name="warranty_end_date"/>
                 </xpath>
-  <xpath expr="//field[@name='location']" position="replace">
-                </xpath>
+  <!-- <xpath expr="//field[@name='location']" domain="[('usage','=','asset')]" position="replace">
+                </xpath> -->
                 
                 <xpath expr="//field[@name='technician_user_id']" position="replace">
                 
                      <field name="technician_user_id" String="Assigned to"/>
+                </xpath>  
+                <xpath expr="//field[@name='cost']" position="replace">
+                
+                     <field name="cost" String="Purchase Amount"/>
                 </xpath>
             </field>
         </record>
