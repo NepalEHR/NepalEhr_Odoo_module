@@ -7,7 +7,7 @@ _logger = logging.getLogger(__name__)
 
 class Maintainance(models.Model):
     _inherit = "maintenance.equipment"
-    asset_number = fields.Float(string='Asset Number')
+    asset_number = fields.Char(string='Asset Number')
     criticality = fields.Selection([('general','General'),
                                    ('important','Important'),
                                    ('very important','Very Important'),
