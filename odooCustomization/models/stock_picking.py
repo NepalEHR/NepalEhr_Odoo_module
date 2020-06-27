@@ -16,8 +16,9 @@ class Picking(models.Model):
         _logger.info("Inside get total stock picking")
         total_amnt = 0
         for product in self.move_lines:
-            total_amnt = total_amnt + (product.price_unit * product.product_uom_qty )
-        self.x_amount_total= total_amnt
+            total_amnt =total_amnt + (product.product_uom_qty * product.product_id.list_price)
+            # total_amnt + (product.price_unit * product.product_uom_qty )
+        self.x_amount_total=total_amnt
         self.update({
                         'x_amount_total':  total_amnt
                         })

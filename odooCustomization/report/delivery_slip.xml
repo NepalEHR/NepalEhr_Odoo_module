@@ -29,9 +29,7 @@
                                 <th name="td_sched_date_h">
                                     <strong>Date</strong>
                                 </th>
-                                <th name="td_sched_date_h">
-                                    <strong>Expiry Date</strong>
-                                </th>
+                               
                             </tr>
                         </thead>
                         <tbody>
@@ -47,9 +45,7 @@
                                         <span t-field="o.min_date"/>
                                    </t>
                                 </td>
-                                  <td t-if="o.max_date"> 
-                                    <span t-field="o.max_date"/>
-                                </td>
+                                  
                             </tr>
                         </tbody>
                     </table>
@@ -79,6 +75,8 @@
                                     <span class="pull-left">Lot/Serial Number</span>
                                 </th>
                                 <th class="text-center"><strong>Quantity</strong></th>
+                                <th class="text-center"><strong>Price Unit</strong></th>
+                                <th class="text-center"><strong>Net Price</strong></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -99,9 +97,9 @@
                                                         <span t-field="packlot.lot_name"/>
                                                     </t>
                                                 </td>
-                                                <td name="lot_qty">
+                                                <!-- <td name="lot_qty">
                                                     <span t-field="packlot.qty"/>
-                                                </td>
+                                                </td> -->
                                             </tr>
                                         </table>
                                     </td>
@@ -118,12 +116,36 @@
                                         <span t-field="pack_operation.product_uom_id"></span>
                                     </t>
                                 </td>
+                                  <t t-if="has_serial_number">
+                                    <td t-if="pack_operation.pack_lot_ids">
+                                        <table class="table table-condensed" t-if="pack_operation.pack_lot_ids">
+                                            <tr t-foreach="pack_operation.pack_lot_ids" t-as="packlot">
+                                                <td>
+                                                    <span t-field="packlot.sale_price"/>
+                                                    <t t-if="not packlot.lot_id">
+                                                        <span t-field="packlot.sale_price"/>
+                                                    </t>
+                                                </td>
+                                                <!-- <td name="lot_qty">
+                                                    <span t-field="packlot.qty"/>
+                                                </td> -->
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td t-if="not pack_operation.pack_lot_ids"/>
+                                </t>
+                                 <td class="text-center"> <span t-field="o.x_amount_total"/> </td>
                             </tr>
                         </tbody>
                     </table>
 
 
 <div class="row" name="customer_address">
+
+ <div class="total_cost col-xs-4 pull-left">
+                        
+<Strong>Date of reciept :  <span t-field="o.date_done"/> </Strong>
+                    </div>
                         <div class="total_cost col-xs-4 pull-right">
                         
 <Strong>Total Amount in Nrs :  <span t-field="o.x_amount_total"/> </Strong>
