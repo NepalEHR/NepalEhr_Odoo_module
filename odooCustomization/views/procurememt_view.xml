@@ -12,8 +12,7 @@
               </xpath>  
     <xpath expr="//field[@name='date_order']" position="after">
                 
-                  <field name="picking_type_id" options="{'no_open': True, 'no_create': True}" attrs="{'readonly': ['|', ('invoice_status','=', 'invoiced'), ('state', '=', 'done')]}"/>
-                                    
+                  <field name="picking_type_id" domain="[('code','=','incoming')]" options="{'no_create': True}" groups="stock.group_stock_multi_locations"/>                   
                 </xpath>  
 
           
