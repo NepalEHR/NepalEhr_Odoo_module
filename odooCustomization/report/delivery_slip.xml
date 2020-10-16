@@ -134,7 +134,38 @@
                                     </td>
                                     <td t-if="not pack_operation.pack_lot_ids"/>
                                 </t>
-                                 <td class="text-center"> <span t-field="o.x_amount_total"/> </td>
+                                 <td class="text-center"> 
+                                 
+                                 <t t-foreach="request.env['purchase.order'].search([('name', '=', o.origin)], limit=1)" t-as="obj">
+                                               <t t-foreach="obj.order_line" t-as="product_order">
+
+                                                <t t-if="product_order.product_id == pack_operation.product_id">
+                                               <span t-field="product_order.price_unit"/>
+                                                </t>
+
+
+                                              </t>
+                                                                
+                                              
+                                                
+                                  </t>
+                                  </td>
+                                  <td class="text-center">
+                                   <t t-foreach="request.env['purchase.order'].search([('name', '=', o.origin)], limit=1)" t-as="obj">
+                                               <t t-foreach="obj.order_line" t-as="product_order">
+
+                                                <t t-if="product_order.product_id == pack_operation.product_id">
+                                               <span t-field="product_order.price_subtotal"/>
+                                                </t>
+
+
+                                              </t>
+                                                                
+                                              
+                                                
+                                  </t>
+                                 
+                                  </td>
                             </tr>
                         </tbody>
                     </table>
