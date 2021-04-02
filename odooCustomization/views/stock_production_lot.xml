@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+<data>
+
+
+<record id="view_production_lot_tree_inherit" model="ir.ui.view">
+            <field name="name">stock.production.lot.inherit</field>
+            <field name="model">stock.production.lot</field>
+            <field name="inherit_id" ref="stock.view_production_lot_tree"/>
+            <field name="arch" type="xml">
+
+            <xpath expr="//tree" position="attributes">
+                <attribute name="colors">red:check_date  </attribute>
+            </xpath>
+            
+                <xpath expr="//field[@name='product_id']" position="after">
+                     <field name="life_date"/>
+                     <field name="check_date" invisible="1"/>
+                </xpath>
+            </field>
+        </record>
+
+
+</data>
+</odoo>
