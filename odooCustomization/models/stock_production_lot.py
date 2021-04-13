@@ -10,7 +10,8 @@ import dateutil.parser
 class ProductionLot(models.Model):
     _inherit = 'stock.production.lot'
     check_date = fields.Boolean(default=False,compute='_check_the_date')
-
+    pharma_id=23
+    store_id=15
     @api.depends('life_date')
     def _check_the_date(self):
         cur_date = datetime.datetime.now().date()
@@ -22,11 +23,18 @@ class ProductionLot(models.Model):
                     rec.check_date = True
             except:
                 rec.check_date = True
-    
-    @api.multi
-    def name_get(self):
-        result = []
-        for record in self:
-            record_name = record.name
-            result.append((record.id, record_name))
-        return result
+
+    # @api.multi
+    # def name_get(self):
+    #     result = []
+    #     count_data =0
+    #     # x_available_total = 0
+    #     for record in self:
+    #         for quant in record.quant_ids:
+    #             # if quant.lot_id.id == record.id:
+    #             if (quant.location_id.usage == "internal") :
+    #                 count_data = count_data + quant.qty
+    #                 # x_available_total = quant.x_available_total
+    #         record_name = record.name+"["+str(count_data)+"]"
+    #         result.append((record.id, record_name))                    
+    #     return result
