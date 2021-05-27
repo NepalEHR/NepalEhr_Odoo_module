@@ -9,7 +9,9 @@ import dateutil.parser
 
 class ProductionLot(models.Model):
     _inherit = 'stock.production.lot'
-    check_date = fields.Boolean(default=False,compute='_check_the_date')
+    expired_state = fields.Char(string='Expiration status',default="NOTEXPIRED",compute='_check_the_date')
+    # to_expire = fields.Boolean(default=False,compute='_check_the_date')
+
     pharma_id=23
     store_id=15
     @api.depends('life_date')
@@ -19,10 +21,12 @@ class ProductionLot(models.Model):
         for rec in self:
             try:
                 life_date = dateutil.parser.parse(rec.life_date).date()
-                if life_date < new_date:
-                    rec.check_date = True
+                if life_date < cur_date:
+                    rec.expired_state ="EXPIRED"
+                if life_date >= cur_date and life_date < new_date:
+                    rec.expired_state ="TOEXPIRED"
             except:
-                rec.check_date = True
+                rec.expired_state ="NOTEXPIRED"
 
     # @api.multi
     # def name_get(self):

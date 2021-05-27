@@ -10,12 +10,13 @@
             <field name="arch" type="xml">
 
             <xpath expr="//tree" position="attributes">
-                <attribute name="colors">red:check_date  </attribute>
+                <attribute name="colors">red:expired_state in ('EXPIRED');green:expired_state in ('TOEXPIRED')</attribute>
+
             </xpath>
             
                 <xpath expr="//field[@name='product_id']" position="after">
                      <field name="life_date"/>
-                     <field name="check_date" invisible="1"/>
+                     <field name="expired_state" invisible="1"/>
                 </xpath>
             </field>
         </record>
