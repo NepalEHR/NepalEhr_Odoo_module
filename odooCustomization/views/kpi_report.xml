@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_kpi_sheet_report" model="ir.ui.view">
+        <field name="name">Kpi Sheet Report</field>
+        <field name="model">kpi_sheet.report</field>
+        <field name="arch" type="xml">
+            <form string="KPI SHEET REPORT" class="oe_form_configuration">
+                <header>
+                    
+                </header>
+                <sheet>
+                <group string="KPI REPORTING">
+
+                <group name="group_right">
+
+					<div>
+                            <label for="date_from" string="Date From"/>
+                            <field name="date_from"/>
+                        </div>
+					</group>
+
+
+                    <group name="group_left">
+ <div>
+                            <label for="date_to" string="Date To"/>
+                            <field name="date_to"  />
+                        </div>
+                        
+					</group>
+                    <div>
+                        
+                        
+                       
+                        <div>
+                            <label for="location_id" string="Location"/>
+                            <div>
+                                <field name="location_id"/>
+                            </div>
+                        </div>
+                        <div>
+                            <button class="btn-primary"
+                                name="action_test_connection"
+                                string="Generate" type="object" />    
+                            
+                        </div>
+                    </div>
+                </group>
+               
+            
+               
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+      <record id="action_kpi_report" model="ir.actions.act_window">
+            <field name="name">KPI REPORT</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">kpi_sheet.report</field>
+        <field name="view_mode">form</field>
+        <field name="target">inline</field>
+        </record>
+<menuitem id="menu_reporting_kpi_report" name="KPI REPORT" parent="menu_reporting_purchase" sequence="11" action="action_kpi_report" />
+   
+   
+</odoo>
