@@ -60,7 +60,7 @@
         <field name="view_mode">form</field>
         <field name="target">inline</field>
         </record>
-<menuitem id="menu_reporting_kpi_report" name="KPI REPORT" parent="menu_reporting_purchase" sequence="11" action="action_kpi_report" />
+<menuitem id="menu_reporting_kpi_report" name="KPI REPORT" parent="menu_reporting_custom" sequence="11" action="action_kpi_report" />
    
    
 </odoo>

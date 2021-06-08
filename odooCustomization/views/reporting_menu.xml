@@ -7,7 +7,8 @@
 
 <!-- sub menus  -->
    <!--My Dashboard Menu-->
-   <menuitem  id="menu_board_my_dash_report" parent="menu_reporting" action="board.open_board_my_dash_action" sequence="49"/>
+   <menuitem  id="menu_board_my_dash_report" parent="menu_reporting" action="board.open_board_my_dash_action" sequence="48"/>
+   <menuitem name="Custom Report" parent="menu_reporting" id="menu_reporting_custom" sequence="49" />
    <menuitem name="Sales" parent="menu_reporting" id="menu_reporting_sales" sequence="50" />
    <menuitem name="Purchase" parent="menu_reporting" id="menu_reporting_purchase" sequence="51" />
    <menuitem name="Accounting" parent="menu_reporting" id="menu_reporting_account" sequence="52" />
