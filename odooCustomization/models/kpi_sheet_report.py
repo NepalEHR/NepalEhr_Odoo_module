@@ -160,7 +160,7 @@ class Binary(http.Controller):
             mData.append(data[28]) #Product Category
             mData.append(data[26]) #Supplier Category
             mData.append(data[4]) #Move date
-            mData.append(data[9]) #Way
+            mData.append(data[8]) #Way
             mData.append(data[2]) #Supplier Name
             mData.append(data[27]) # PO Name
             mData.append(data[30]) #Supplier Unit Price
