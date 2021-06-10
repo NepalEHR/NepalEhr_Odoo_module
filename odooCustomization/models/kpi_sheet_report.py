@@ -143,6 +143,8 @@ class Binary(http.Controller):
                 LEFT JOIN purchase_order po on pol.order_id = po.id
                 LEFT JOIN stock_location dstloc on dstloc.id = sm.location_dest_id
                 LEFT JOIN stock_location srcloc on srcloc.id = sm.location_id
+
+                where sm.date > '"""+str(dateFrom)+ """' and sm.date  < '"""+str(dateTo)+ """'
         """
         # Where
 
