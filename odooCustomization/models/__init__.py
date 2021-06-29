@@ -1,4 +1,5 @@
 import stock_picking
+import sale
 import product_categories
 import supplierClassifications
 import partnerCustomization

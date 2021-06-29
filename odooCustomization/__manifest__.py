@@ -36,6 +36,7 @@
         'views/procurememt_view.xml',
         'views/stock_production_lot.xml' ,
         'views/stock_quant.xml'   ,
-        'views/kpi_report.xml'         
+        'views/kpi_report.xml'       ,
+        'views/sale_order_view.xml'      
     ],
 }

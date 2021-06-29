@@ -9,7 +9,7 @@ import dateutil.parser
 
 class ProductionLot(models.Model):
     _inherit = 'stock.production.lot'
-    expired_state = fields.Char(string='Expiration status',default="NOTEXPIRED",compute='_check_the_date')
+    expired_state = fields.Char(string='Expiration status',default="NOTEXPIRED",compute='_check_the_date',store=True)
     # to_expire = fields.Boolean(default=False,compute='_check_the_date')
 
     pharma_id=23
