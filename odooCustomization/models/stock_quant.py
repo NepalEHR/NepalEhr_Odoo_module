@@ -3,6 +3,8 @@
 
 from odoo import api, fields, models, _
 from odoo.exceptions import UserError
+from odoo.exceptions import ValidationError
+from odoo.tools import config, float_compare
 
 import datetime
 import dateutil.parser
@@ -35,3 +37,28 @@ class StockQuant(models.Model):
                         'x_available_total_pharma':temp1,
                         'x_available_total_store':temp2
                         })
+    
+    @api.multi
+    @api.constrains('product_id', 'qty')
+    def check_negative_qty(self):
+        p = self.env['decimal.precision'].precision_get(
+            'Product Unit of Measure')
+        if (
+                config.get('test_enable') and
+                not self.env.context.get('test_stock_no_negative')):
+            return
+        for quant in self:
+            if (float_compare(quant.qty, 0, precision_digits=p) == -1 and
+                    quant.product_id.type == 'product' and
+                    not quant.product_id.allow_negative_stock and
+                    not quant.product_id.categ_id.allow_negative_stock):
+                msg_add = ''
+                if quant.lot_id:
+                    msg_add = _(" lot '%s'") % quant.lot_id.name_get()[0][1]
+                raise ValidationError(_(
+                    "You cannot validate this stock operation because the "
+                    "stock level of the product '%s'%s would become negative "
+                    "(%s) on the stock location '%s' and negative stock is "
+                    "not allowed for this product.") % (
+                        quant.product_id.display_name, msg_add, quant.qty,
+                        quant.location_id.complete_name))
