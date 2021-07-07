@@ -23,10 +23,16 @@ class ProductionLot(models.Model):
                 life_date = dateutil.parser.parse(rec.life_date).date()
                 if life_date < cur_date:
                     rec.expired_state ="EXPIRED"
-                if life_date >= cur_date and life_date < new_date:
+                    return {'value': {'expired_state': 'EXPIRED'}}
+                elif life_date >= cur_date and life_date < new_date:
                     rec.expired_state ="TOEXPIRED"
+                    return {'value': {'expired_state': 'TOEXPIRED'}}
+                else:
+                    rec.expired_state ="NOTEXPIRED"
+                    return {'value': {'expired_state': 'NOTEXPIRED'}}
             except:
                 rec.expired_state ="NOTEXPIRED"
+                return {'value': {'expired_state': 'NOTEXPIRED'}}
 
     # @api.multi
     # def name_get(self):

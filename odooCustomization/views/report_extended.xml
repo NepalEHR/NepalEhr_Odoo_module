@@ -18,7 +18,7 @@
       <record model="ir.ui.view" id="view_purchase_order_pivot_custom">
             <field name="name">product.month.pivot.inherit</field>
             <field name="model">purchase.report</field>
-	   <field name="inherit_id" ref="purchase.view_purchase_order_pivot"/>
+	        <field name="inherit_id" ref="purchase.view_purchase_order_pivot"/>
             <field name="arch" type="xml">
                 <pivot string="Purchase Orders Statistics" disable_linking="True">
 
@@ -32,4 +32,8 @@
                 </pivot>
             </field>
         </record>
+
+
+
+
     </odoo>

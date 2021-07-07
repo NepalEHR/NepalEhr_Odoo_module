@@ -10,7 +10,7 @@ class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
     @api.onchange('shop_id')
-    def _change_payment_type(self):
+    def _change_shop_loc(self):
         for sale_order in self:
             for sale_order_line in sale_order.order_line:
                 sale_order_line.update({
