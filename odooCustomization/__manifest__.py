@@ -38,6 +38,7 @@
         'views/stock_quant.xml'   ,
         'views/kpi_report.xml'       ,
         'views/sale_order_view.xml'    ,
-        'views/account_invoice_report_view_custom.xml'  
+        'views/account_invoice_report_view_custom.xml'  ,
+        'views/sales_purchase_report_modification.xml'
     ],
 }

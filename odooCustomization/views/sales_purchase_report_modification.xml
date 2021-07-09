@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+   <record id="sale.view_order_product_search_inherited" model="ir.ui.view">
+        <field name="name">sale.report.search</field>
+        <field name="model">sale.report</field>
+        <field name="inherit_id" ref="sale.view_order_product_search" />
+        <field name="arch" type="xml">
+            <search string="Sales Analysis">
+                <field name="date" />
+                <filter string="This Year" name="year" invisible="1" domain="[('date','&lt;=', time.strftime('%%Y-12-31')),('date','&gt;=',time.strftime('%%Y-01-01'))]" />
+                <filter name="Today" string="today" domain="[('date', '&gt;=', datetime.datetime.now().strftime('%Y-%m-%d 00:00:00')),('date', '&lt;=', datetime.datetime.now().strftime('%Y-%m-%d 23:23:59'))]"/> 
+                <filter string="This Month" name="this_month" domain="[('date','&lt;',(context_today()+relativedelta(months=1)).strftime('%%Y-%%m-01')), ('date','&gt;=',time.strftime('%%Y-%%m-01'))]"/>
+            </search>
+        </field>
+    </record>
+
+
+    <record id="view_purchase_order_search_inherited" model="ir.ui.view">
+        <field name="name">report.purchase.order.search</field>
+        <field name="model">purchase.report</field>
+        <field name="inherit_id" ref="purchase.view_purchase_order_search"/>
+        <field name="arch" type="xml">
+            <search string="Purchase Orders">
+                <filter string="Approved Today" name="approved_today" domain="[('date_approve','&gt;=', datetime.datetime.now().strftime('%Y-%m-%d 00:00:00')),('date_approve', '&lt;=', datetime.datetime.now().strftime('%Y-%m-%d 23:23:59'))]"/>
+                <filter string="Ordered Today" name="ordered_today" domain="[('date_order','&gt;=', datetime.datetime.now().strftime('%Y-%m-%d 00:00:00')),('date_order', '&lt;=', datetime.datetime.now().strftime('%Y-%m-%d 23:23:59'))]"/>
+                <filter string="Approved this month" name="approved_monthly" domain="[('date_approve','&gt;=', datetime.datetime.now().strftime('%%Y-%%m-01 00:00:00')),('date_approve', '&lt;=', datetime.datetime.now().strftime('%%Y-%%m-31 23:23:59'))]"/>
+                <filter string="Ordered this month" name="ordered_monthly" domain="[('date_order','&gt;=', datetime.datetime.now().strftime('%%Y-%%m-01 00:00:00')),('date_order', '&lt;=', datetime.datetime.now().strftime('%%Y-%%m-31 23:23:59'))]"/>
+                 </search>   
+        </field>
+    </record> 
+
+</data>
+</odoo>
