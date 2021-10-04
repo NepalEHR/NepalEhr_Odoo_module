@@ -121,20 +121,17 @@
                                         <table class="table table-condensed" t-if="pack_operation.pack_lot_ids">
                                             <tr t-foreach="pack_operation.pack_lot_ids" t-as="packlot">
                                                 <td>
-                                                    <span t-field="packlot.sale_price"/>
+                                                    <span t-field="pack_operation.unitPrice"/>
                                                     <t t-if="not packlot.lot_id">
-                                                        <span t-field="packlot.sale_price"/>
+                                                        <span t-field="pack_operation.unitPrice"/>
                                                     </t>
                                                 </td>
-                                                <!-- <td name="lot_qty">
-                                                    <span t-field="packlot.qty"/>
-                                                </td> -->
                                             </tr>
                                         </table>
                                     </td>
                                     <td t-if="not pack_operation.pack_lot_ids"/>
                                 </t>
-                                 <td class="text-center"> <span t-field="o.x_amount_total"/> </td>
+                                 <td class="text-center"> <span t-field="pack_operation.totalPrice"/> </td>
                             </tr>
                         </tbody>
                     </table>
