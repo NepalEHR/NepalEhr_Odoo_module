@@ -77,6 +77,7 @@
                                 <th class="text-center"><strong>Quantity</strong></th>
                                 <th class="text-center"><strong>Price Unit</strong></th>
                                 <th class="text-center"><strong>Net Price</strong></th>
+                                <th class="text-center"><strong>Tax</strong></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -132,6 +133,7 @@
                                     <td t-if="not pack_operation.pack_lot_ids"/>
                                 </t>
                                  <td class="text-center"> <span t-field="pack_operation.totalPrice"/> </td>
+                                 <td class="text-center"> <span t-field="pack_operation.price_tax"/> </td>
                             </tr>
                         </tbody>
                     </table>
@@ -143,9 +145,15 @@
                         
 <Strong>Date of reciept :  <span t-field="o.date_done"/> </Strong>
                     </div>
-                        <div class="total_cost col-xs-4 pull-right">
+                        <div class="total_cost col-xs-6 pull-right">
                         
-<Strong>Total Amount in Nrs :  <span t-field="o.x_amount_total"/> </Strong>
+<Strong>Total Amount :  <span t-field="o.x_amount_total"/>
+<br></br>
+Tax :  <span t-field="o.x_tax_total"/>
+<br></br>
+Total Amount with Tax :  <span t-field="o.x_amount_with_tax"/>
+
+ </Strong>
                     </div>
                     </div>
                     <p t-if="o.backorder_id">
