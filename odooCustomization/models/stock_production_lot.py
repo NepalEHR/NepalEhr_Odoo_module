@@ -34,17 +34,12 @@ class ProductionLot(models.Model):
                 rec.expired_state ="NOTEXPIRED"
                 return {'value': {'expired_state': 'NOTEXPIRED'}}
 
-    # @api.multi
-    # def name_get(self):
-    #     result = []
-    #     count_data =0
-    #     # x_available_total = 0
-    #     for record in self:
-    #         for quant in record.quant_ids:
-    #             # if quant.lot_id.id == record.id:
-    #             if (quant.location_id.usage == "internal") :
-    #                 count_data = count_data + quant.qty
-    #                 # x_available_total = quant.x_available_total
-    #         record_name = record.name+"["+str(count_data)+"]"
-    #         result.append((record.id, record_name))                    
-    #     return result
+    @api.multi
+    def name_get(self):
+        result = []
+        count_data =0
+        # x_available_total = 0
+        for record in self:
+            record_name = record.name+"["+str(record.stock_forecast)+"]"
+            result.append((record.id, record_name))                    
+        return result
