@@ -14,6 +14,13 @@ class ProductionLot(models.Model):
 
     pharma_id=23
     store_id=15
+
+    def lotCheckFunction(self):
+        self.env.cr.execute("update stock_production_lot  set expired_state = 'EXPIRED' where life_date <= now();")
+        self.env.cr.execute("update stock_production_lot  set expired_state = 'TOEXPIRED' where life_date > now() and life_date <= (NOW() + INTERVAL '30 DAYS') ;")
+        self.env.cr.execute("update stock_production_lot  set expired_state = 'NOTEXPIRED' where  life_date > (NOW() + INTERVAL '30 DAYS') ;")
+        return True
+    
     @api.depends('life_date')
     def _check_the_date(self):
         cur_date = datetime.datetime.now().date()
