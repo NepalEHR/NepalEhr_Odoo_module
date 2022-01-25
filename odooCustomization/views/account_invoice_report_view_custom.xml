@@ -121,7 +121,7 @@
         <field name="help">From this report, you can have an overview of the amount invoiced to your customers. The search tool can also be used to personalise your Invoices reports and so, match this analysis to your needs.</field>
     </record>
 
-    <menuitem name="Daily Report Invoices" action="action_account_invoice_report_all_custom" id="menu_action_account_invoice_report_all_custom" parent="menu_reporting_account_BI" sequence="21"/>
+    <menuitem name="Daily Report Invoices" action="action_account_invoice_report_all_custom" id="menu_action_account_invoice_report_all_custom" parent="menu_reporting_account_BI" groups="group_custom_report_manager"  sequence="21"/>
 
     <!-- <act_window
         id="act_account_invoice_partner_relation"
