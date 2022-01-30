@@ -25,6 +25,7 @@
         "maintenance"
     ],
     'data': [
+        'security/custom_report_security.xml',
         'views/stock_picking.xml',
         'report/delivery_slip.xml',
         'views/product_categories.xml',
