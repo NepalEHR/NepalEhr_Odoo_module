@@ -40,6 +40,9 @@
         'views/kpi_report.xml'       ,
         'views/sale_order_view.xml'    ,
         'views/account_invoice_report_view_custom.xml'  ,
-        'views/sales_purchase_report_modification.xml'
+        'views/sales_purchase_report_modification.xml',
+        'views/account_invoice_report_registration_team.xml',
+        'views/account_invoice_report_pharmacy_team.xml',
+
     ],
 }
