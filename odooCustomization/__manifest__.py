@@ -25,6 +25,7 @@
         "maintenance"
     ],
     'data': [
+        'data/email_template.xml',
         'security/custom_report_security.xml',
         'views/stock_picking.xml',
         'report/delivery_slip.xml',
@@ -42,7 +43,8 @@
         'views/account_invoice_report_view_custom.xml'  ,
         'views/sales_purchase_report_modification.xml',
         'views/account_invoice_report_registration_team.xml',
-        'views/account_invoice_report_pharmacy_team.xml',
-
+        'views/account_invoice_report_pharmacy_team.xml',        
+        'views/product_template.xml',
+        # 'views/ir_cron.xml'
     ],
 }
