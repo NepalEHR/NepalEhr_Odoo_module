@@ -45,6 +45,6 @@
         'views/account_invoice_report_registration_team.xml',
         'views/account_invoice_report_pharmacy_team.xml',        
         'views/product_template.xml',
-        # 'views/ir_cron.xml'
+        'views/ir_cron.xml'
     ],
 }
