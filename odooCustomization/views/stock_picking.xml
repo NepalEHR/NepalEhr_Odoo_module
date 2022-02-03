@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+<data>
+<record id="view_stock_keeping_form_inherit" model="ir.ui.view">
+            <field name="name">stock.view_picking_form.inherit</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+
+            <!-- <field name="product_id" position="after">
+            <filed name ="availability"/>
+            </field> -->
+ <xpath expr="//notebook" position="after">
+ <group>
+               	<group name="group_left">
+                   
+                      </group>
+              	<group name="group_right">
+
+                    <field name="x_amount_with_tax" />
+                   
+                  </group>
+                </group>
+            </xpath>
+
+          
+            </field>
+        </record>
+
+    <!-- <record id="payment_type_account_invoice_tree_view" model="ir.ui.view">
+        <field name="name">stock.view_picking_tree.inherit</field>
+        <field name="model">stock.picking</field>
+        <field name="view_mode">tree,kanban,form,calendar,pivot,graph</field>
+        <field name="inherit_id" ref="astock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <field name="origin" position="after">
+                <field name="payment_type" />
+            </field>
+        </field>
+    </record> -->
+
+
+   
+</data>
+
+</odoo>
+

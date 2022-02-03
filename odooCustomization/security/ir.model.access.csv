@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_custom_report_map_manager,custom.report.map.manager,model_account_invoice_report,group_custom_report_manager,1,1,1,1
+access_custom_report_map_pharmacy,custom.report.map.pharmacy,model_account_invoice_report,group_custom_report_pharmacy,1,1,1,1
+access_custom_report_map_registration,custom.report.map.registration,model_account_invoice_report,group_custom_report_registration,1,1,1,1

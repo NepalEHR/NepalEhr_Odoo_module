@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<record id="inherit_sale_order_form" model="ir.ui.view">
+		<field name="name">inherit.sale.order.form</field>
+		<field name="model">sale.order</field>
+		<field name="inherit_id" ref="sale.view_order_form"/>
+		<field name="arch" type="xml">
+		<field name ="partner_id" position="replace">
+<field name ="partner_id" options="{'no_quick_create': True,'no_create_edit':True}"/>
+</field>
+			<xpath expr="//field[@name='order_line']/tree/field[@name='lot_id']" position="replace">
+				<field name="lot_id" domain="[('product_id', '=', product_id),('expired_state', '!=', 'EXPIRED')]"/>
+               
+			</xpath>
+			<xpath expr="//field[@name='order_line']/form/group/group/field[@name='lot_id']" position="replace">
+				<field name="lot_id"  domain="[('product_id', '=', product_id),('expired_state', '!=', 'EXPIRED')]"/>
+			</xpath>
+			
+<xpath expr="//field[@name='order_line']/tree/field[@name='product_id']" position="replace">
+                                <field name="product_id" options="{'no_quick_create': True,'no_create_edit':True}"
+                                       context="{'partner_id':parent.partner_id, 'quantity':product_uom_qty, 'pricelist':parent.pricelist_id, 'uom':product_uom, 'company_id': parent.company_id}"/><!--attrs="{'readonly': ['|', ('qty_invoiced', '&gt;', 0), ('procurement_ids', '!=', [])]}"-->
+                        </xpath>
+
+
+            
+		</field>
+	</record>
+	
+
+		<record id="inherit_quotation_tree_view_logged_user" model="ir.ui.view">
+		<field name="name">inherit.quotation.tree.logged</field>
+		<field name="model">sale.order</field>
+		<field name="inherit_id" ref="sale.view_quotation_tree"/>
+	
+		<field name="arch" type="xml">
+			<xpath expr="//field[@name='partner_id']" position="after">
+			    <field name="payment_type"/>
+			</xpath>
+		</field>
+	</record>
+
+
+		<record id="sale_order_view_search_inherit_sale_quotation" model="ir.ui.view">
+		<field name="name">sale.order.search.inherit.sale.quotation</field>
+		<field name="model">sale.order</field>
+		<field name="inherit_id" ref="sale.sale_order_view_search_inherit_quotation"/>
+	
+		<field name="arch" type="xml">
+		<xpath expr="//filter[@name='my_sale_orders_filter']" position="after">
+                    <separator/>
+                    <filter string="Pharmacy" name="pharmacy" domain="[('shop_id','=','Pharmacy')]"/>
+                    <filter string="Registration" name="registration" domain="[('shop_id','=','Registration')]"/>
+                </xpath>
+		</field>
+	</record>
+	<record id="view_sales_order_filter_custom" model="ir.ui.view">
+            <field name="name">sale.order.list.select.custom</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+            <field name="arch" type="xml">
+            	<field name="name" position="replace" >   
+					<field name="partner_id" operator="child_of"/>
+					 <field name="name" string="Order" filter_domain="['|', '|', ('name', 'ilike', self), ('client_order_ref', 'ilike', self), ('partner_id', 'child_of', self)]"/>
+
+				</field>
+            </field>
+        </record>
+
+
+</odoo>

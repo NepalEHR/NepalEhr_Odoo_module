@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+
+        <record id="view_low_stock_notify_product_form" model="ir.ui.view">
+            <field name="name">Add Low stock notify field product form</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_only_form_view" />
+            <field name="arch" type="xml">
+                <xpath expr="//group[@name='sale']" position="after" >
+                    <group>
+                        <field name="qty_low_stock_notify"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
+        <record model="mail.message" id="module_install_notification">
+            <field name="model">mail.channel</field>
+            <field name="res_id" ref="mail.channel_all_employees"/>
+            <field name="message_type">notification</field>
+            <field name="subtype_id" ref="mail.mt_comment"/>
+            <field name="subject">Project Management application installed!</field>
+            <field name="body"><![CDATA[<p>Manage multi-level projects and tasks.  You can delegate tasks, track task work, and review your planning.</p>
+                    <p>You can manage todo lists on tasks by installing the <i>Todo Lists</i> application, supporting the Getting Things Done (GTD) methodology.</p>
+                    <p>You can also manage issues/bugs in projects by installing the "Issue Tracker" application.</p>]]></field>
+        </record>
+
+    </data>
+</openerp>
