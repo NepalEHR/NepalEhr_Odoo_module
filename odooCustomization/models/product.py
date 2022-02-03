@@ -25,6 +25,8 @@ class Product(models.Model):
                 stocklowdata = stocklowdata + str(counter)+","+str(product.id)+ ","+ str(product.name.replace(",", "-"))+ ","+ str(qty_available)+ ","+ str(qty_incoming)+ ","+ str(qty_low_stock_notify)+ "\n"      
                 counter = counter+1
         now = datetime.now()
+        wt = self.env['mail.channel']
+        id_needed = wt.search([('name', '=', "low-stock-alert")]).id
         default_body ="<strong>Low Stock Report for "+str(now.strftime("%Y/%m/%d %H:%M:%S"))+"</strong>"
         ATTACHMENT_NAME='Low Stock Report'+str(now.strftime("%Y%m%d_%H_%M_%S"))
         attachment_ids = self.env['ir.attachment'].create({
@@ -34,11 +36,9 @@ class Product(models.Model):
             'store_fname': ATTACHMENT_NAME,
             'datas': base64.encodestring(stocklowdata),
             'res_model': 'mail.channel',
-            'res_id': 7,
+            'res_id': id_needed,
             'mimetype': 'application/x-pdf'
         })
-        wt = self.env['mail.channel']
-        id_needed = wt.search([('name', '=', "low-stock-alert")]).id
         self.env['mail.message'].create({
          'email_from': self.env.user.partner_id.email, # add the sender email
          'author_id': self.env.user.partner_id.id, # add the creator id
