@@ -5,6 +5,14 @@
             <xpath expr="//div[@class='page']" position="replace">
                   <div class="page">
                     <div class="row" name="customer_address">
+                    <div class="col-12 text-center">
+                               <strong> कर्णाली प्रदेश सरकार <br></br>
+                                सामाजिक बिकाश मन्त्रालय <br></br>
+                                स्वास्थ्य निर्देशनालय <br> </br>
+                                डोल्पा जिल्ला अस्पताल<br> </br>
+                                माग फाराम 
+                                </strong>
+                                </div>
                         <div class="col-xs-4 pull-right">
                             <div>
                                 <span><strong>Customer Address:</strong></span>
@@ -22,6 +30,9 @@
                     <h2>
                         <span t-field="o.name"/>
                     </h2>
+                    <div class="pull-right">
+                            मा.ले.प.फा.न : ४६ 
+                    </div>
                     <table class="table table-condensed">
                         <thead>
                             <tr>
@@ -156,6 +167,88 @@ Total Amount with Tax :  <span t-field="o.x_amount_with_tax"/>
  </Strong>
                     </div>
                     </div>
+                    <br></br>
+                    <div class="row" >
+<div class="col-xs-12 col-12">
+माथि  उल्लेखित मालसामानहरु खरिद आदेश नम्बर / हस्तान्तरण फाराम न.<strong> <span t-if="o.origin">
+                                    <span t-field="o.origin"/>
+                                </span>
+                                </strong>
+                                 मिति 
+                                 <strong>
+                                <span t-if="o.state == 'done'">
+                                        <span t-field="o.date_done"/>
+                                   </span>
+                                   <span t-if="o.state != 'done'">
+                                        <span t-field="o.min_date"/>
+                                   </span>
+                                   </strong>
+                                   अनुसार श्री 
+                                   <strong>
+                                   <span t-if="o.partner_id">
+                                <span t-field="o.partner_id"/>
+                            </span>
+                            </strong>
+                                   बाट प्राप्त हुन आएको हुँदा जाँची गन्ती गरी हेर्दा ठिक दुरुस्त भएकोले खातामा आम्दानी बाँधेको प्रमाणित गर्दछु|
+</div>
+ <div class="col-xs-4 col-4">
+ <table>
+    <tr> 
+        <th colspan="2"> फाँटवालाको दस्तखत:</th>
+    </tr> 
+    <tr> 
+        <td> नाम:</td>
+        <td> ...................</td>
+    </tr> 
+    <tr> 
+        <td> पद :</td>
+        <td> ...................</td>
+    </tr> 
+    <tr> 
+        <td> मिति :</td>
+        <td> ...................</td>
+    </tr> 
+ </table>
+ </div>
+ <div class="col-xs-4 col-4">
+  <table>
+    <tr> 
+        <th colspan="2"> प्रमाणित गर्ने शाखा प्रमुखको दस्तखत:</th>
+    </tr> 
+      <tr> 
+        <td> नाम:</td>
+        <td> ...................</td>
+    </tr> 
+    <tr> 
+        <td> पद :</td>
+        <td> ...................</td>
+    </tr> 
+    <tr> 
+        <td> मिति :</td>
+        <td> ...................</td>
+    </tr> 
+ </table>
+ </div>
+ <div class="col-xs-4 col-4">
+  <table>
+    <tr> 
+        <th colspan="2">कार्यालय प्रमुखको दस्तखत :</th>
+    </tr> 
+      <tr> 
+        <td> नाम:</td>
+        <td> ...................</td>
+    </tr> 
+    <tr> 
+        <td> पद :</td>
+        <td> ...................</td>
+    </tr> 
+    <tr> 
+        <td> मिति :</td>
+        <td> ...................</td>
+    </tr> 
+ </table>
+ </div>
+                    </div>
                     <p t-if="o.backorder_id">
                         This shipment is a backorder of <t t-esc="o.backorder_id.name"/>.
                     </p>
@@ -166,6 +259,158 @@ Total Amount with Tax :  <span t-field="o.x_amount_with_tax"/>
                     </p>
                 </div>
             </xpath>
+        </template>
+
+
+<!-- changes in purchase order  -->
+               <template id="report_purchaseorder_document_custom" inherit_id="purchase.report_purchaseorder_document">
+               <div class="col-xs-6" position="before">
+                                <div class="col-12 text-center">
+                               <strong> Dolpa District Hospital <br></br></strong>
+                                Dunai, Dolpa, Karnali Province, Nepal <br></br>
+                                Tel: xx-xxx-xxxx
+                                </div>
+                                <hr> </hr>
+               </div>
+                  <p t-field="o.notes" position="after">
+                           <div class="row" >
+
+ <div class="col-xs-4 col-4">
+ <table>
+    <tr> 
+        <th colspan="2"> Prepared By:</th>
+    </tr> 
+    <tr> 
+        <td> Name:</td>
+        <td> ...................</td>
+    </tr> 
+    <tr> 
+        <td> Position:</td>
+        <td> ...................</td>
+    </tr> 
+    <tr> 
+        <td> Date:</td>
+        <td> ...................</td>
+    </tr> 
+ </table>
+ </div>
+ <div class="col-xs-4 col-4">
+  
+ </div>
+ <div class="col-xs-4 col-4">
+  <table>
+    <tr> 
+        <th colspan="2">Approved By:</th>
+    </tr> 
+    <tr> 
+        <td> Name:</td>
+        <td> ...................</td>
+    </tr> 
+    <tr> 
+        <td> Position:</td>
+        <td> ...................</td>
+    </tr> 
+    <tr> 
+        <td> Date:</td>
+        <td> ...................</td>
+    </tr> 
+ </table>
+ </div>
+                    </div>
+            </p>
+        </template>
+
+
+<!-- Changes for RFQ -->
+           <template id="report_purchasequotation_document_custom" inherit_id="purchase.report_purchasequotation_document">
+                  
+                  <div class="row mt32 mb32" position="before">
+                              <div class="col-12 text-center">
+                               <strong> कर्णाली प्रदेश सरकार <br></br>
+                                सामाजिक बिकाश मन्त्रालय <br></br>
+                                स्वास्थ्य निर्देशनालय <br> </br>
+                                डोल्पा जिल्ला अस्पताल<br> </br>
+                                माग फाराम 
+                                </strong>
+                                </div>
+                  </div>
+                   <table class="table table-condensed" position="before">
+                   <div class="row">
+                        <div class="col-6 pull-left"> श्री प्रमुख <br> </br>भण्डार शाखा </div>
+                        <div class="col-6 pull-right"> मा.ले.खा.प.फा.न.: ५१</div>
+                        </div>
+                   </table>
+                  <p t-field="o.notes" position="after">
+                           <div class="row" >
+
+ <div class="col-xs-6 col-6">
+ <table>
+    <tr> 
+        <th colspan="2"> माग गर्नेको दस्तखत:</th>
+    </tr> 
+    <tr> 
+        <td> नाम:</td>
+        <td> ...................</td>
+    </tr> 
+    <tr> 
+        <td> मिति :</td>
+        <td> ...................</td>
+    </tr> 
+    <tr> 
+        <td> प्रयोजन :</td>
+        <td> ...................</td>
+    </tr> 
+    <tr> 
+        <td> मिति  :</td>
+        <td> ...................</td>
+    </tr> 
+       <tr> 
+        <th colspan="2"> जिन्सी खातामा चढाउनेको दस्तखत :</th>
+    </tr> 
+    <tr> 
+        <th colspan="2"> </th>
+    </tr> 
+    <tr> 
+        <td> मिति:</td>
+        <td> ...................</td>
+    </tr> 
+ </table>
+ </div>
+  <div class="col-xs-6 col-6">
+  <table>
+    <tr> 
+        <th colspan="2">क) बजारबाट खरिद गरिदिनु:</th>
+    </tr> 
+    <tr> 
+        <th colspan="2">ख) मौज्दात बाट दिनु :</th>
+    </tr> 
+    <tr> 
+        <th colspan="2"> </th>
+    </tr> 
+     
+    <tr> 
+        <th colspan="2">आदेश दिनेको दस्तखत:</th>
+    </tr> 
+    <tr> 
+        <td> मिति :</td>
+        <td> ...................</td>
+    </tr> 
+    
+    <tr> 
+        <th colspan="2"> </th>
+    </tr> 
+     
+    <tr> 
+        <th colspan="2">मालसमान बुझिलिनेको दस्तखत:</th>
+    </tr> 
+    <tr> 
+        <td> मिति:</td>
+        <td> ...................</td>
+    </tr> 
+ </table>
+ </div>
+                    </div>
+            </p>
         </template>
     </data>
 </openerp>

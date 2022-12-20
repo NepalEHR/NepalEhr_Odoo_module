@@ -11,6 +11,9 @@ from odoo.addons.web.controllers.main import serialize_exception,content_disposi
 import base64
 
 import StringIO
+import logging
+_logger = logging.getLogger(__name__)
+
 class kpi_sheet_report(models.Model):
     _name = 'kpi_sheet.report'
     _description = 'KPI SHEET REPORTS'
@@ -56,7 +59,7 @@ class Binary(http.Controller):
 
         # Here all excel data and calculations
         # Sheet body, remaining rows
-	    font_style = xlwt.XFStyle()
+        font_style = xlwt.XFStyle()
         
         # row_num = row_num + 1
         # ws1.write(row_num, 0, date_from, font_style)
@@ -82,9 +85,14 @@ class Binary(http.Controller):
                                         [('Content-Type', 'application/octet-stream'),
                                         ('Content-Disposition', content_disposition(filename))])
     
+    def validateData(nvalue):
+        if nvalue is None:
+            return False
+        else:
+            return True
 
     def generateKpiData(self,dateFrom,dateTo,locationId):
-        genData=[["Id","Product Name","Product Category","Supplier Category","Move date","Way","Supplier Name","PO Name","Supplier Unit Price","Purchase Unit Price With Tax","Quantity","Sales Price","From","To","Product reference","Essential","Government","Formulary","Medicine","Bare Min","Min","Max level","Antibiotic","Lab Item","Medical Item","Other Item","Physic Medicine","Insurance Medicine","Vertical Program","Dental Item","Running total","Hit/Mis","Stockout duration","Batch Number"]]
+        genData=[["Id","Product Name","Product Category","Supplier Category","Move date","Way","Supplier Name","PO Name","Supplier Unit Price","Purchase Unit Price With Tax","Quantity","Sales Price","From","To","Batch Number","MOHP Essesntial","Government Supply","Formulary","Medicine","Antibiotic","Lab item","Medical Item","Other Item","Physic Medicine","Insurance Medicine","Vertical Program","Dental Item","Min Quantity", "Max quantity"]]
         sql="""          
                 select 
                 row_number() OVER (order by sm.date) as id,
@@ -104,10 +112,11 @@ class Binary(http.Controller):
                 srcloc.name as fromloc,
                 dstloc.name as toloc,
                 pp.default_code as itemreference,
-                swo.product_min_qty,swo.product_max_qty,
+                swo.product_min_qty,
+                swo.product_max_qty,
                 pt.x_formulary,
                 pt.x_govt,
-                pt.x_low_cost_eq,
+                pt.x_low_cost_eq, 
 
                 pt.antibiotic,
                 pt.other_item,
@@ -120,15 +129,17 @@ class Binary(http.Controller):
                 pt.dental_item,
 
 
-                xpsc.category_name as supplier_category,
-                pt.list_price,po.name as poname,
-                pc.name as product_category,
+                xpsc.category_name,
+                pt.list_price,
+                po.name as poname,
+                pc.name as product_category, 
                 rp.name as supplier,
                 pol.price_unit as purchase_price,
                 pol.price_tax  as ptax,
                 (pol.price_unit+(pol.price_tax)) as amtwithtax,
                 spl.sale_price as lot_sp,
-                spl.name as batch_number
+                spl.name as batch_number,
+                rp.supplier_category
 
                 from 
                 stock_move sm inner join product_product pp on sm.product_id=pp.id and sm.state='done' AND (sm.location_dest_id="""+str(locationId)+ """ or sm.location_id="""+str(locationId)+ """)
@@ -154,43 +165,41 @@ class Binary(http.Controller):
         http.request.cr.execute(sql)
         rData=http.request.env.cr.fetchall()
         counter=0
+        # _logger.error(rData)
         for data in rData:
             counter = counter+1
             mData=[]
             mData.append(counter)
             mData.append(data[1]) #Product Name
-            mData.append(data[28]) #Product Category
+            mData.append(data[29]) #Product Category
             mData.append(data[26]) #Supplier Category
             mData.append(data[4]) #Move date
             mData.append(data[8]) #Way
-            mData.append(data[2]) #Supplier Name
-            mData.append(data[27]) # PO Name
-            mData.append(data[30]) #Supplier Unit Price
-            mData.append(data[31]) #Purchase Unit Price With Tax
+            mData.append(data[30]) #Supplier Name
+            mData.append(data[28]) # PO Name
+            mData.append(data[31]) #Supplier Unit Price
+            mData.append(data[33]) #Purchase Unit Price With Tax
             mData.append(data[3]) #Quantity
-            mData.append(data[33]) #Sales Price
+            mData.append(data[34]) #Sales Price
             mData.append(data[9]) #From
             mData.append(data[10]) #To
-            mData.append(data[11]) #Product reference
-            mData.append("") #Essential
-            mData.append(data[15]) #Government
-            mData.append(data[14]) #Formulary
-            mData.append(data[19]) #Medicine
-            mData.append(data[12]) #Bare Min
-            mData.append(data[13]) #Min
-            mData.append("") #Max level
-            mData.append(data[17]) #Antibiotic
-            mData.append(data[20]) #Lab Item
-            mData.append(data[19]) #Medical Item
-            mData.append(data[18]) #Other Item
-            mData.append(data[22]) #Physic Medicine
-            mData.append(data[23]) #Insurance Medicine
-            mData.append(data[24]) #Vertical Program
-            mData.append(data[25]) #Dental Item
-            mData.append("") #Running total
-            mData.append("") #Hit/Mis
-            mData.append(data[2]) #Stockout duration
-            mData.append(data[34]) #Batch Number
+            mData.append(data[35]) #Batch Number
+            # mData.append(data[11]) #Product reference
+            mData.append(False if data[16] is None else True) #Essential
+            mData.append(False if data[15] is None else True) #Government
+            mData.append(False if data[14] is None else True) #Formulary
+            mData.append(False if data[21] is None else True) #Medicine
+            mData.append(False if data[17] is None else True) #Antibiotic
+            mData.append(False if data[20] is None else True) #Lab item
+            mData.append(False if data[19] is None else True) #Medical Item
+            mData.append(False if data[18] is None else True) #Other Item
+            mData.append(False if data[22] is None else True) #Physic Medicine
+            mData.append(False if data[23] is None else True) #Insurance Medicine
+            mData.append(False if data[24] is None else True) #Vertical Program
+            mData.append(False if data[25] is None else True) #Dental Item
+            mData.append(data[12]) #Minimum Quantity
+            mData.append(data[13]) #Max Quantity
+
             genData.append(mData)
 
         return genData

@@ -3,7 +3,7 @@
 {
     'name':'Nyaya Customization',
     'description':'Customization as per Nepal Electronic Health Record',
-    'author':'Possible Health',
+    'author':'Nepal EHR',
     'website': 'https://www.nepalehr.org/',
     'application': True,
     'category': '',
@@ -24,9 +24,10 @@
         "stock_account",
         "maintenance"
     ],
-    'data': [
-        'data/email_template.xml',
+    'data': [ 
         'security/custom_report_security.xml',
+        'security/ir.model.access.csv',
+        'data/email_template.xml',
         'views/stock_picking.xml',
         'report/delivery_slip.xml',
         'views/product_categories.xml',
@@ -40,10 +41,13 @@
         'views/stock_quant.xml'   ,
         'views/kpi_report.xml'       ,
         'views/sale_order_view.xml'    ,
-        'views/account_invoice_report_view_custom.xml'  ,
+        # 'views/account_invoice_report_view_custom.xml'  ,
         'views/sales_purchase_report_modification.xml',
-        'views/account_invoice_report_registration_team.xml',
-        'views/account_invoice_report_pharmacy_team.xml',        
+        'report/account_invoice_report_registration_team.xml',
+        'report/account_invoice_report_pharmacy_team.xml',   
+        'report/account_invoice_report_view.xml',  
+        # 'views/account_invoice_report_registration_team.xml',
+        # 'views/account_invoice_report_pharmacy_team.xml',        
         'views/product_template.xml',
         'views/ir_cron.xml'
     ],

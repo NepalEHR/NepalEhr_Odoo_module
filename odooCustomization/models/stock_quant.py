@@ -23,12 +23,13 @@ class StockQuant(models.Model):
     def getDataFromDB(self,record):
         temp1=0
         temp2=0
-        self.env.cr.execute('select sum(qty) as qty from stock_quant where lot_id = '+str(record.lot_id.id)+' and  location_id = '+str(self.pharma_id)+';')
-        data_pharma=self.env.cr.fetchall()
-        temp1 = data_pharma[0][0]
-        self.env.cr.execute('select sum(qty) as qty from stock_quant where lot_id = '+str(record.lot_id.id)+' and  location_id = '+str(self.store_id)+';')
-        data_store=self.env.cr.fetchall()
-        temp2 = data_store[0][0]
+        if record.lot_id.id:
+            self.env.cr.execute('select sum(qty) as qty from stock_quant where lot_id = '+str(record.lot_id.id)+' and  location_id = '+str(self.pharma_id)+';')
+            data_pharma=self.env.cr.fetchall()
+            temp1 = data_pharma[0][0]
+            self.env.cr.execute('select sum(qty) as qty from stock_quant where lot_id = '+str(record.lot_id.id)+' and  location_id = '+str(self.store_id)+';')
+            data_store=self.env.cr.fetchall()
+            temp2 = data_store[0][0]
         record.x_available_total_pharma=temp1
         record.x_available_total_store=temp2
         record.update({

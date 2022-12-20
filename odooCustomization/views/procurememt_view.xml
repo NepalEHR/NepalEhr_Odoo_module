@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
 <data>
+
+
+<record id="view_picking_form_inherit" model="ir.ui.view">
+            <field name="name">stock.picking.form.inherit</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+
+                        <xpath expr="//field[@name='pack_operation_product_ids']/tree/field[@name='product_id']" position="replace">
+                                <field name="product_id" options="{'no_quick_create': True,'no_create_edit':True}"
+                                       context="{'partner_id': parent.partner_id}"/><!--attrs="{'readonly': ['|', ('qty_invoiced', '&gt;', 0), ('procurement_ids', '!=', [])]}"-->
+                        </xpath>
+          
+            </field>
+        </record>
+
+
+
 <record id="view_purchase_order_form_inherit" model="ir.ui.view">
             <field name="name">purchase.purchase_order_form.inherit</field>
             <field name="model">purchase.order</field>
@@ -14,7 +32,10 @@
                 
                   <field name="picking_type_id" domain="[('code','=','incoming')]" options="{'no_create': True}" groups="stock.group_stock_multi_locations"/>                   
                 </xpath>  
-
+<xpath expr="//field[@name='order_line']/tree/field[@name='product_id']" position="replace">
+                                <field name="product_id" options="{'no_quick_create': True,'no_create_edit':True}"
+                                       context="{'partner_id': parent.partner_id}"/><!--attrs="{'readonly': ['|', ('qty_invoiced', '&gt;', 0), ('procurement_ids', '!=', [])]}"-->
+                        </xpath>
           
             </field>
         </record>

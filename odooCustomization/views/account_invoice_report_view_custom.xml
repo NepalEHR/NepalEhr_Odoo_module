@@ -72,8 +72,8 @@
             <search string="Invoices Analysis">
                 <field name="date"/>
                  <filter string="This Year" name="thisyear" domain="['|', ('date', '=', False), '&amp;',('date','&lt;=', time.strftime('%%Y-12-31')),('date','&gt;=',time.strftime('%%Y-01-01'))]" help="Journal invoices with period in current year"/>
-                 <filter string="This Month" name="thismonth" domain="['|', ('date', '=', False), '&amp;',('date','&lt;=', time.strftime('%%Y-%%m-31')),('date','&gt;=',time.strftime('%%Y-%%m-01'))]" help="Journal invoices with period in current month"/>
-                
+                 <filter string="This Month" name="thismonth" domain="['|', ('date', '=', False), '&amp;',('date','&lt;=', (context_today()+relativedelta(months=1)).strftime('%%Y-%%m-01')),('date','&gt;=',time.strftime('%%Y-%%m-01'))]" help="Journal invoices with period in current month"/>
+               
                 <filter string="Today" name="todayDate" domain="[('date','=', time.strftime('%%Y-%%m-%%d'))]" help="Journal invoices with period in current year"/>
                 <separator/>
                 <filter string="To Invoice" domain="[('ystate','=','draft')]" help = "Draft Invoices"/>
