@@ -6,7 +6,7 @@
             id="report_deposited_slip"
             model="amount.deposit"
             string="Amount Deposit Slip"
-            report_type="qweb-html"
+            report_type="qweb-pdf"
             name="nepalehr_odoo_module.report_deposit_slip"
             file="nepalehr_odoo_module.report_deposit_slip"
         />
@@ -17,7 +17,11 @@
                     <div class="page">
                     <div class="row">
 <div class="col-4" style="font-size:30px;text-align: center;">
-                   <strong>Anbukhaireni Hospital</strong><p style="font-size:20px;" > Abukhaireni, Tanahu</p>
+                   <strong>
+                   
+                   Anbukhaireni Hospital
+                   </strong>
+                   <p style="font-size:20px;" > Abukhaireni, Tanahu</p>
 </div>                     
 </div>
                         <h1  style="text-align: center;">Amount Deposit Slip</h1> 
