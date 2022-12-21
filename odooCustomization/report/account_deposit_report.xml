@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+ 
+  <report 
+            id="report_deposited_slip"
+            model="amount.deposit"
+            string="Amount Deposit Slip"
+            report_type="qweb-html"
+            name="nepalehr_odoo_module.report_deposit_slip"
+            file="nepalehr_odoo_module.report_deposit_slip"
+        />
+
+<template id="report_deposited_sliped">  
+                <t t-call="report.external_layout">
+        
+                    <div class="page">
+                    <div class="row">
+<div class="col-4" style="font-size:30px;text-align: center;">
+                   <strong>Anbukhaireni Hospital</strong><p style="font-size:20px;" > Abukhaireni, Tanahu</p>
+</div>                     
+</div>
+                        <h1  style="text-align: center;">Amount Deposit Slip</h1> 
+
+                        <div class ="row">
+                        <div class="col-xs-6 col-6"  style="text-align: left;" > </div>
+                         <div class="col-xs-6 col-6"  style="text-align: left;" ><b> Depositer Location:</b> <span t-field="o.depositer_location"/> </div>
+                         </div>
+                         <br/>
+                         <div class ="row mt-10" >
+                        <div class="col-xs-12 col-12"  style="text-align: left;" > </div>
+                         <div class="col-xs-6 col-6"  style="text-align: left;" ><b> Depositer:</b> <span t-field="o.depositer_id"/> </div>
+                         <div class="col-xs-6 col-6" style="text-align: left;" ><b> Date of Deposition: </b> <span t-field="o.deposited_date"/> </div>
+                       
+                     
+
+                        
+                         <div class="col-xs-6 col-6" style="text-align: left;"><b>Deposited to: </b><span t-field="o.deposited_to"/> </div>
+                         <div class="col-xs-6 col-6" style="text-align: left;"> <b>Deposited Amount:  </b><span t-field="o.deposited_amount"/></div>
+                        </div>
+                         <br/>
+                         <div class ="row mt-10" >
+
+<div class="col-xs-6 col-6" style="text-align: left;">
+    <table>
+        <tr> 
+            <th colspan="2"> Prepared By:</th>
+        </tr> 
+        <tr> 
+            <td> Name:</td>
+            <td> ...................</td>
+        </tr> 
+        <tr> 
+            <td> Position:</td>
+            <td> ...................</td>
+        </tr> 
+        <tr> 
+            <td> Date:</td>
+            <td> ...................</td>
+        </tr> 
+    </table>
+
+</div>
+
+
+ <div class="col-xs-6 col-6" style="text-align: left;">
+        <table>
+            <tr> 
+                <th colspan="2"> Approved By:</th>
+            </tr> 
+            <tr> 
+                <td> Name:</td>
+                <td> ...................</td>
+            </tr> 
+            <tr> 
+                <td> Position:</td>
+                <td> ...................</td>
+            </tr> 
+            <tr> 
+                <td> Date:</td>
+                <td> ...................</td>
+            </tr> 
+        </table> 
+</div>
+
+
+
+                          
+                    </div>
+                    </div>
+                  
+    </t> 
+</template>
+
+
+    <template id="report_deposit_slip">
+        <t t-call="report.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="nepalehr_odoo_module.report_deposited_sliped"/>
+            </t>
+
+        </t>
+    </template>
+
+</odoo> 
