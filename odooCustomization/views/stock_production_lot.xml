@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-<data>
 
 
 <record id="view_production_lot_tree_inherit" model="ir.ui.view">
@@ -9,18 +8,28 @@
             <field name="inherit_id" ref="stock.view_production_lot_tree"/>
             <field name="arch" type="xml">
 
-            <xpath expr="//tree" position="attributes">
+              <xpath expr="//tree" position="attributes">
                 <attribute name="colors">red:expired_state in ('EXPIRED');green:expired_state in ('TOEXPIRED')</attribute>
-
-            </xpath>
+                </xpath>
             
                 <xpath expr="//field[@name='product_id']" position="after">
-                     <field name="life_date"/>
+                     <field name="life_date"  />
                      <field name="expired_state" invisible="1"/>
+                     <field name="stock_forecast" invisible="1" /> 
                 </xpath>
             </field>
         </record>
+ <record id="stock.action_production_lot_form" model="ir.actions.act_window">
+       <field name="domain">[('stock_forecast','>',0.0)]</field>
 
+   </record>
+<data>
+            <template id="assets_backend" name="tree view menu" inherit_id="web.assets_backend">
+                  <xpath expr="." position="inside">
+                        <script type="text/javascript" src="/odooCustomization/static/src/js/tree_view_button.js"></script>
+                  </xpath>
+            </template>
+  
 
 </data>
 </odoo>

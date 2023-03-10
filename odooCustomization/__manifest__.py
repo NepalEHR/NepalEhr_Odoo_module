@@ -24,6 +24,7 @@
         "stock_account",
         "maintenance"
     ],
+    'qweb': ['static/src/xml/tree_view_button.xml'],
     'data': [ 
         'security/custom_report_security.xml',
         'security/ir.model.access.csv',
