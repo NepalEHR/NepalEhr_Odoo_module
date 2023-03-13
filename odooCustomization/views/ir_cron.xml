@@ -28,6 +28,19 @@
             <field name="function" eval="'lotCheckFunction'"/>
             <field name="args" eval="'()'"/>
         </record>
+
+        <!-- <record id="ir_cron_count_stock_at_once" model="ir.cron">
+            <field name="name">Count Stock at once</field>
+            <field eval="True" name="active"/>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="False"/>
+            <field name="model" eval="'	stock.production.lot'"/>
+            <field name="function" eval="'compute_stock_at_once'"/>
+            <field name="args" eval="'()'"/>
+        </record> -->
     </data>
 
 </openerp>

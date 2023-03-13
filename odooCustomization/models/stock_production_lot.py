@@ -7,50 +7,46 @@ import odoo.addons.decimal_precision as dp
 
 from datetime import datetime
 import dateutil.parser
+import logging
+_logger = logging.getLogger(__name__)
 
 class ProductionLot(models.Model):
     _inherit = 'stock.production.lot'
-    @api.depends('product_id')
+    
+    
+    def compute_stock_at_once(self):
+        # raise UserError("inside compute stock at once")
+        _logger.error("inside compute stock at once")
+        cur_date = datetime.now().date()
+        stockPicking = self.env['stock.production.lot'].search([('expired_state', '!=', 'EXPIRED')])
+        for data in stockPicking:
+            scrap_qty=0
+            for quant in data.quant_ids:
+                if quant.location_id.id == 23:
+                    scrap_qty= quant.qty 
+            _logger.error(str(scrap_qty)+ "-" + str(data.name))
+            data.stock_forecast_temp = scrap_qty
+            data.write({
+                        'stock_forecast_temp':  scrap_qty, 
+                        })
+    
+    @api.depends('quant_ids')
     def _get_future_stock_forecast_temp(self):
-        """ Gets stock of products for locations
-        @return: Dictionary of values
+        """ Gets stock of products for locations 
         """
-        for lot in self:
-            if self._context is None:
-                context = {}
-            else:
-                context = self._context.copy()
-            if 'location_id' not in context or context['location_id'] is None:
-                locations = self.env['stock.location'].search([('usage', '=', 'internal')])
-            elif context.get('search_in_child', False):
-                locations = self.env['stock.location'].search([('location_id', 'child_of', context['location_id'])]) or [context['location_id']]
-            else:
-                context['location_id'] = 15
-                locations = self.env['stock.production.lot'].browse(context.get('location_id'))
-            if locations:
-                self._cr.execute('''select
-                        lot_id,
-                        sum(qty)
-                    from
-                        stock_quant
-                    where
-                        location_id IN %s and lot_id = %s 
-                        group by lot_id''',
-                        (tuple(locations.ids), lot.id,))
-                result = self._cr.dictfetchall()
-                if result and result[0]:
-                    lot.stock_forecast = result[0].get('sum')
-
-                    product_uom_id = context.get('product_uom', None)
-                    if(product_uom_id):
-                        product_uom = self.env['product.uom'].browse(product_uom_id)
-                        lot.stock_forecast_temp = result[0].get('sum') * product_uom.factor
+        # for scrapping_item in self: 
+        scrap_qty =0
+        # self.compute_stock_at_once()
+        for data in self:
+            for quant in data.quant_ids:
+                if quant.location_id.id == 23:
+                    scrap_qty= quant.qty 
+            _logger.error(scrap_qty)
+            data.stock_forecast_temp = scrap_qty 
     expired_state = fields.Char(string='Expiration status',default="NOTEXPIRED",compute='_check_the_date',store=True)
     # to_expire = fields.Boolean(default=False,compute='_check_the_date')
     stock_forecast_temp = fields.Float(string="Available forecast",
-                                     compute=_get_future_stock_forecast_temp,
-                                     digits=dp.get_precision('Product Unit of Measure'),
-                                     help="Future stock forecast quantity of products with this Serial Number available in company warehouses",
+                                     compute=_get_future_stock_forecast_temp,  
                                      store=True
                                      )
 
