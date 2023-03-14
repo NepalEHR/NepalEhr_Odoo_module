@@ -29,6 +29,7 @@
         'security/custom_report_security.xml',
         'security/ir.model.access.csv',
         'data/email_template.xml',
+        'views/stock_pack_operation.xml',
         'views/stock_picking.xml',
         'report/delivery_slip.xml',
         'views/product_categories.xml',
