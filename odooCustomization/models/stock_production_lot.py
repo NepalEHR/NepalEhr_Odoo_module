@@ -5,7 +5,7 @@ from odoo import api, fields, models, _
 from odoo.exceptions import UserError
 import odoo.addons.decimal_precision as dp
 
-from datetime import datetime
+import datetime
 import dateutil.parser
 import logging
 _logger = logging.getLogger(__name__)
@@ -16,8 +16,7 @@ class ProductionLot(models.Model):
     
     def compute_stock_at_once(self):
         # raise UserError("inside compute stock at once")
-        _logger.error("inside compute stock at once")
-        cur_date = datetime.now().date()
+        _logger.error("inside compute stock at once") 
         stockPicking = self.env['stock.production.lot'].search([('expired_state', '!=', 'EXPIRED')])
         for data in stockPicking:
             scrap_qty=0
@@ -62,13 +61,17 @@ class ProductionLot(models.Model):
             for quant in scrapping_item.quant_ids:
                 if quant.location_id.id == 23:
                     scrap_qty=scrap_qty+quant.qty
+            scrapping_item.stock_forecast_temp = 0
+            scrapping_item.write({
+                        'stock_forecast_temp':  0, 
+                        })
             inc = inv_obj.create({
 				'product_id': scrapping_item.product_id.id,
 				'scrap_qty': scrap_qty,
 				'lot_id': scrapping_item.id,
 				'location_id':23,
 				'scrap_location_id':4,
-				'date_expected':datetime.today(),
+				'date_expected':datetime.datetime.today(),
                 'product_uom_id': scrapping_item.product_id.uom_id.id
 				
 				})
@@ -85,7 +88,7 @@ class ProductionLot(models.Model):
     
     @api.depends('life_date')
     def _check_the_date(self):
-        cur_date = datetime.now().date()
+        cur_date = datetime.datetime.now().date()
         new_date = cur_date + datetime.timedelta(days=30)
         for rec in self:
             try:
