@@ -85,7 +85,7 @@ class ProductionLot(models.Model):
     
     @api.depends('life_date')
     def _check_the_date(self):
-        cur_date = datetime.datetime.now().date()
+        cur_date = datetime.now().date()
         new_date = cur_date + datetime.timedelta(days=30)
         for rec in self:
             try:

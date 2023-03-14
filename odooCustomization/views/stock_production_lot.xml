@@ -16,11 +16,27 @@
                      <field name="life_date"  /> 
                      <field name="expired_state" invisible="1"/>
                      <field name="stock_forecast" invisible="1" /> 
+                     <field name="stock_forecast_temp"  /> 
                 </xpath>
+
+                
             </field>
+            
         </record>
- <record id="stock.action_production_lot_form" model="ir.actions.act_window">
-       <field name="domain">[('stock_forecast_temp','>',0.0)]</field>
+<record model="ir.ui.view" id="custom_stock_production_lot_search">
+            <field name="name">custom.stock.production.lot.search</field>
+            <field name="model">stock.production.lot</field> 
+            <field name="inherit_id" ref="stock.search_product_lot_filter"/>
+            <field name="arch" type="xml">
+            <search>
+    <filter string="Non Zero Lots" name="non_zero_lot"
+        domain="[('stock_forecast_temp','>',0)]"/>
+</search>
+            </field>
+            </record>
+       <record id="stock.action_production_lot_form" model="ir.actions.act_window">
+       <!-- <field name="domain">[('stock_forecast_temp','>',0.0)]</field> -->
+       <field name="context">{ "search_default_non_zero_lot":1}</field>
 
    </record>
 <data>
