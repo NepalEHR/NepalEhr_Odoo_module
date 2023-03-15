@@ -22,9 +22,21 @@
                   </group>
                 </group>
             </xpath>
-
-          
+ 
+         
             </field>
+        </record>
+<record id="view_stock_move_keeping_form_inherit" model="ir.ui.view">
+            <field name="name">stock.view_move.picking.form.inherit</field>
+            <field name="model">stock.move</field>
+            <field name="inherit_id" ref="stock.view_move_picking_tree"/>
+            <field name="arch" type="xml"> 
+ 
+<field name="product_uom_qty"  position ="after">    
+				<field name="available_qty" />         
+                </field>
+			 
+         </field>
         </record>
 
     <!-- <record id="payment_type_account_invoice_tree_view" model="ir.ui.view">
@@ -39,7 +51,16 @@
         </field>
     </record> -->
 
-
+	<!-- <record id="inherit_stock_moving_form" model="ir.ui.view">
+		<field name="name">inherit.stock.picking.form</field>
+		<field name="model">stock.picking</field>
+		<field name="inherit_id" ref="stock.view_picking_form"/>
+		<field name="arch" type="xml"> 
+			<xpath expr="//field[@name='move_lines']/kanban/field[@name='product_id']" position="after">
+				<field name="available_qty" />         
+			</xpath> 
+		</field>
+	</record> -->
    
 </data>
 

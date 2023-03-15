@@ -10,10 +10,24 @@ class Picking(models.Model):
     x_amount_total = fields.Float(string='Total Amount', compute='get_x_total')
     x_tax_total= fields.Float(string='Total tax', compute='get_x_total')
     x_amount_with_tax= fields.Float(string='Total Amount with tax', compute='get_x_total')
-
+    
+    @api.onchange('location_id')
+    def calculateAvailableQty(self):
+        for data in self:
+            for lines in data.move_lines:
+                location_id = data.location_id.id
+                product_id =lines.product_id.id
+                query = "select sum(qty) as qty from stock_quant where product_id= "+str(product_id)+" and  location_id = "+str(location_id)+";"
+                _logger.error(query)
+                self.env.cr.execute(query)
+                data_pharma=self.env.cr.fetchall()
+                temp1 = data_pharma[0][0]
+                lines.available_qty = temp1 
+                _logger.error(temp1)  
     @api.onchange('move_lines')
     def get_x_total(self):  
-        _logger.info("Inside get total stock picking")
+        _logger.error("Inside get total stock picking")
+        # self.calculateAvailableQty()
         total_amnt = 0
         total_tax=0
         total_amnt_tax=0
@@ -42,6 +56,23 @@ class Picking(models.Model):
                         'x_amount_with_tax':  total_amnt_tax
                         })
         return {'value': {'x_amount_total':  total_amnt, 'x_tax_total':  total_tax, 'x_amount_with_tax':  total_amnt_tax}}
+class StockMove(models.Model):
+    _inherit="stock.move"
+    available_qty  = fields.Float(string="Available forecast")
+
+    @api.onchange('product_id')
+    def calculateAvailableQty(self):
+        for data in self:
+            if data.product_id:
+                location_id = data.picking_id.location_id.id
+                product_id =data.product_id.id
+                query = "select sum(qty) as qty from stock_quant where product_id= "+str(product_id)+" and  location_id = "+str(location_id)+";"
+                _logger.error("from line "+query)
+                self.env.cr.execute(query)
+                data_pharma=self.env.cr.fetchall()
+                temp1 = data_pharma[0][0]
+                data.available_qty = temp1 
+                _logger.error(temp1)  
 
 class StockPickingOperation(models.Model):
     _inherit = "stock.pack.operation"
