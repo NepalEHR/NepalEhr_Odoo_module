@@ -48,9 +48,15 @@ class ProductionLot(models.Model):
                                      compute=_get_future_stock_forecast_temp,  
                                      store=True
                                      )
+    active =fields.Boolean(String="Active",default=True)
 
     pharma_id=23
     store_id=15
+    def archive_lot(self):
+        for rec in self:
+            if not rec.product_qty:
+                rec.active = False
+    
     @api.multi
     def action_bulk_scrap(self):   
         scrapping_id = ""

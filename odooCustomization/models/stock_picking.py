@@ -18,15 +18,15 @@ class Picking(models.Model):
                 location_id = data.location_id.id
                 product_id =lines.product_id.id
                 query = "select sum(qty) as qty from stock_quant where product_id= "+str(product_id)+" and  location_id = "+str(location_id)+";"
-                _logger.error(query)
+                # _logger.error(query)
                 self.env.cr.execute(query)
                 data_pharma=self.env.cr.fetchall()
                 temp1 = data_pharma[0][0]
                 lines.available_qty = temp1 
-                _logger.error(temp1)  
+                # _logger.error(temp1)  
     @api.onchange('move_lines')
     def get_x_total(self):  
-        _logger.error("Inside get total stock picking")
+        # _logger.error("Inside get total stock picking")
         # self.calculateAvailableQty()
         total_amnt = 0
         total_tax=0
@@ -67,12 +67,12 @@ class StockMove(models.Model):
                 location_id = data.picking_id.location_id.id
                 product_id =data.product_id.id
                 query = "select sum(qty) as qty from stock_quant where product_id= "+str(product_id)+" and  location_id = "+str(location_id)+";"
-                _logger.error("from line "+query)
+                # _logger.error("from line "+query)
                 self.env.cr.execute(query)
                 data_pharma=self.env.cr.fetchall()
                 temp1 = data_pharma[0][0]
                 data.available_qty = temp1 
-                _logger.error(temp1)  
+                # _logger.error(temp1)  
 
 class StockPickingOperation(models.Model):
     _inherit = "stock.pack.operation"
