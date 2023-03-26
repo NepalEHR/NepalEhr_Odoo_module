@@ -56,7 +56,14 @@ class ProductionLot(models.Model):
         for rec in self:
             if not rec.product_qty:
                 rec.active = False
-    
+
+    @api.multi
+    def action_bulk_archieve(self):
+        for scrapping_item in self:
+            scrapping_item.active = False
+            scrapping_item.write({
+                        'active':  False, 
+                        })
     @api.multi
     def action_bulk_scrap(self):   
         scrapping_id = ""
