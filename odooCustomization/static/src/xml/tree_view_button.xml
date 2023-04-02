@@ -6,4 +6,10 @@
                       <button t-if="widget.model == 'stock.production.lot'" class="btn btn-primary btn-sm o_list_button_bulk_archieve" type="button">Bulk Archieve</button>
             </t>
           </t>
+
+          <t t-extend="ListView.buttons">
+            <t t-jquery="button.o_list_button_save" t-operation="after"> 
+                      <button t-if="widget.model == 'stock.quant'" class="btn btn-primary btn-sm o_list_button_bulk_archieve" type="button">Bulk Archieve</button>
+            </t>
+          </t>
       </template>

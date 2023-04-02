@@ -13,7 +13,14 @@ class StockQuant(models.Model):
     store_id=15
     x_available_total_pharma = fields.Float(string='Pharma Inventory', compute='get_x_available',default=0)
     x_available_total_store = fields.Float(string='Store Inventory', compute='get_x_available',default=0)
-    
+    active =fields.Boolean(String="Active",default=True)
+    @api.multi
+    def action_bulk_archieve(self):
+        for archieve_item in self:
+            archieve_item.active = False
+            archieve_item.write({
+                        'active':  False, 
+                        })
     @api.onchange('qty')
     def get_x_available(self):  
         total_amnt = 0

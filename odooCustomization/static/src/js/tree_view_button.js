@@ -22,7 +22,7 @@ odoo.define('bahmni_insurance_odoo.tree_view_button', function (require){
         },
             action_bulk_scrap: function () {  
                 new Model("stock.production.lot").call("action_bulk_scrap",[this.get_selected_ids()]).then(function(result){
-                     window.location.reload() 
+                     window.location.reload() ;
                     console.log(result);//show result in console
                     });
             }  
