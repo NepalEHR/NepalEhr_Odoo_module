@@ -24,7 +24,6 @@
         "stock_account",
         "maintenance"
     ],
-    'qweb': ['static/src/xml/tree_view_button.xml'],
     'data': [ 
         'security/custom_report_security.xml',
         'security/ir.model.access.csv',
@@ -42,6 +41,7 @@
         'views/stock_quant.xml'   ,
         'views/kpi_report.xml'       ,
         'views/sale_order_view.xml'    ,
+        'views/remove_edit_sales_order.xml',
         # 'views/account_invoice_report_view_custom.xml'  ,
         'views/sales_purchase_report_modification.xml',
         'report/account_invoice_report_registration_team.xml',
