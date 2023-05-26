@@ -4,6 +4,8 @@
 <template id="report_invoice_document_inherit" inherit_id="bahmni_insurance_odoo.report_invoice_document_inherit">
 
 <div name="invoice_address" position="replace">
+<br></br>
+<hr></hr>
     <div name="invoice_address" class="col-12 col-xs-12 pull-left" style="font-size:20px;">
         <div class="row"> 
             <div class="col-4 col-xs-4 ">
@@ -18,27 +20,16 @@
                 <span t-esc="o.short_address(o.partner_id.detail_address)" />
             </div>
         </div>
-<hr></hr>
+        <hr></hr>
+        <div t-if="o.date_invoice">
+                    <strong>Invoice Date:</strong>
+                                    <p>  <span t-field="o.date_invoice"/>
+                            <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%H:%M:%S')"/> 
+                    (<span t-esc="o.convert_ad_to_bs()"/>) </p>
+
+        </div>
     </div>
 </div>
-<!-- <div name="invoice_address" position="replace">
-   <div name="Gender_age" class="col-4  col-xs-4 pull-left" style="font-size:20px;">
-        <strong>
-        col-4 pull-left
-            <div class="row"> 
-                <div class="col-xs-6 col-6">
-                <span t-esc="o.calculate_age(o.partner_id.birth_date)"/>Y/<span t-field="o.partner_id.gender"/>
-                </div>
-
-                <div class="col-6 col-xs-6" >
-                    <span t-esc="o.short_address(o.partner_id.detail_address)" />
-
-                </div>
-            </div>
-        </strong>
-    </div>
-
-</div> -->
 </template> 
 
 </data>
