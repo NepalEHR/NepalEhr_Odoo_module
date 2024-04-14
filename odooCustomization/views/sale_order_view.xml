@@ -66,6 +66,17 @@
 				</field>
             </field>
         </record>
+<!-- hide other option but only show sales discount in discount account head option -->
+		 <record model="ir.ui.view" id="inherit_saleorder">
+            <field name="name">Dsicount.head.type</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="bahmni_sale.inherit_sale_order_form"/>
+            <field name="arch" type="xml">
+                <field name ="disc_acc_id" position ="replace">
+                    <field name="disc_acc_id" attrs="{'required': [('discount', '!=', 0.0)]}" options="{'no_quick_create':True,'no_create_edit':True}" domain = "[('name', '=', 'Sales discount')] "/>
+                </field>
+            </field>
+        </record> 
 
 
 </odoo>
